@@ -1,0 +1,147 @@
+<devicedata>
+  <copyright>Copyright 2023 Snap One, LLC. All Rights Reserved.</copyright>
+  <creator>Control4</creator>
+  <manufacturer>Control4</manufacturer>
+  <name>Lock Driver</name>
+  <model>Lock</model>
+  <created>08/23/2023 12:00 AM</created>
+  <modified>02/10/2022 12:00 AM</modified>
+  <version>26</version>
+  <small>devices_sm\c4.gif</small>
+  <large>devices_lg\c4.gif</large>
+  <control>lua_gen</control>
+  <controlmethod></controlmethod>
+  <minimum_os_version>3.3.0</minimum_os_version>
+  <force_auto_update>false</force_auto_update>
+  <OnlineCategory>lock</OnlineCategory>
+  <!-- Specifes a category when searching this driver in Composer Pro's Search Items view -->
+  <composer_categories>
+    <category>Locks</category>
+  </composer_categories>
+  <proxies qty="1">
+      <proxy proxybindingid="5001" name="Lock Driver">lock</proxy>
+  </proxies>
+  <driver>DriverWorks</driver>
+
+  <capabilities>
+		<is_management_only>false</is_management_only>
+		<has_admin_code>true</has_admin_code>
+		<has_schedule_lockout>true</has_schedule_lockout>
+		<has_auto_lock_time>true</has_auto_lock_time>
+		<auto_lock_time_values>0, 5, 10, 30, 60, 120, 300</auto_lock_time_values>
+		<auto_lock_time_display_values>OFF, 5sec, 10sec, 30sec, 1min, 2min, 5min</auto_lock_time_display_values>
+		<has_log_items_count>true</has_log_items_count>
+		<log_item_count_values>5, 10, 20, 50</log_item_count_values>
+		<has_lock_modes>true</has_lock_modes>
+		<lock_modes_values>normal, vacation, privacy</lock_modes_values>
+		<has_log_failed_attempts>true</has_log_failed_attempts>
+		<has_wrong_code_attempts>true</has_wrong_code_attempts>
+		<wrong_code_attempts_values>1, 2, 3, 4, 5, 6, 7</wrong_code_attempts_values>
+		<has_shutout_timer>true</has_shutout_timer>
+		<shutout_timer_values>5, 10, 30, 60, 120</shutout_timer_values>
+		<shutout_timer_display_values>5sec, 10sec, 30sec, 1min, 2min</shutout_timer_display_values>
+		<has_language>true</has_language>
+		<language_values>English, French, Spanish, Klingon</language_values>
+		<has_volume>true</has_volume>
+		<has_one_touch_locking>true</has_one_touch_locking>
+		<has_daily_schedule>true</has_daily_schedule>
+		<has_date_range_schedule>true</has_date_range_schedule>
+		<max_users>1</max_users>
+		<has_settings>true</has_settings>
+		<has_custom_settings>true</has_custom_settings>
+		<has_internal_history>true</has_internal_history>
+  </capabilities>
+
+	<connections>
+		<connection>
+			<id>5001</id>
+			<facing>6</facing>
+			<connectionname>Lock</connectionname>
+			<type>2</type>
+			<consumer>False</consumer>
+			<audiosource>False</audiosource>
+			<videosource>False</videosource>
+			<linelevel>False</linelevel>
+			<classes>
+				<class>
+					<classname>LOCK</classname>
+				</class>
+			</classes>
+			<hidden>True</hidden>
+		</connection>
+
+	</connections>
+  <!-- Designates other drivers as "dependent" and force those drivers to load into a project
+    simultaneously. Can also be used to have these driver automatically bind when they enter the
+    project. -->
+  <dependencies>
+  </dependencies>
+  <conditionals>
+  </conditionals>
+  <events>
+  </events>
+  <config>
+    <documentation file="www/documentation/index.html"></documentation>
+    <!-- to encrypt set attribute in script tag to encryption="2" -->
+    <script file="driver.lua" jit="1"></script>
+    <identify_text></identify_text>
+    <identify_image></identify_image>
+    <actions>
+			<action>
+				<name>Manual Unlock</name>
+				<command>Manual_Unlock</command>
+			</action>
+			<action>
+				<name>Manual Lock</name>
+				<command>Manual_Lock</command>
+			</action>
+			<action>
+				<name>Key Unlock</name>
+				<command>Key_Unlock</command>
+			</action>
+			<action>
+				<name>Key Lock</name>
+				<command>Key_Lock</command>
+			</action>
+		</actions>
+    <commands>
+    </commands>
+    <properties>
+      <property>
+        <name>Log Level</name>
+        <type>LIST</type>
+        <readonly>false</readonly>
+        <default>5 - Trace</default>
+        <items>
+          <item>0 - Fatal</item>
+          <item>1 - Error</item>
+          <item>2 - Warning</item>
+          <item>3 - Info</item>
+          <item>4 - Debug</item>
+          <item>5 - Trace</item>
+        </items>
+      </property>
+      <property>
+        <name>Log Mode</name>
+        <type>LIST</type>
+        <readonly>false</readonly>
+        <default>Off</default>
+        <items>
+          <item>Off</item>
+          <item>Print</item>
+          <item>Log</item>
+          <item>Print and Log</item>
+        </items>
+      </property>
+      <property>
+        <name>Lock Status</name>
+        <type>STRING</type>
+        <readonly>true</readonly>
+        <default></default>
+      </property>
+
+    </properties>
+    <tabs>
+    </tabs>
+  </config>
+</devicedata>
