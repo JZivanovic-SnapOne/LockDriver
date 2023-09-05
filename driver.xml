@@ -46,7 +46,7 @@
 		<has_one_touch_locking>true</has_one_touch_locking>
 		<has_daily_schedule>true</has_daily_schedule>
 		<has_date_range_schedule>true</has_date_range_schedule>
-		<max_users>1</max_users>
+		<max_users>20</max_users>
 		<has_settings>true</has_settings>
 		<has_custom_settings>true</has_custom_settings>
 		<has_internal_history>true</has_internal_history>
@@ -102,6 +102,10 @@
 			<action>
 				<name>Key Lock</name>
 				<command>Key_Lock</command>
+			</action>
+			<action>
+				<name>Print User</name>
+				<command>Print_User</command>
 			</action>
 		</actions>
     <commands>

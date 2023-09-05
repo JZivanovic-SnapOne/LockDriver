@@ -31,7 +31,14 @@ end
 function ON_DRIVER_LATEINIT.Init()
 	CreateLockProxy(LOCK_PROXY_BINDINGID,"Lock Proxy")
 	LockReport_InitialLockStatus(false)
-    UpdateProperty("Lock Status", tostring(IsLocked()))
+	if IsLocked() == true then
+    	UpdateProperty("Lock Status", "Locked")
+	elseif IsLocked() == false then
+    	UpdateProperty("Lock Status", "Unlocked")
+	end
+	--local users_
+	--users_ = C4:PersistGetValue('users') or ''
+	--print(users_)
 end
 
 --[[function ReceivedFromProxy(idBinding, sCommand, tParams)

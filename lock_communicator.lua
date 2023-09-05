@@ -12,7 +12,11 @@ function LockCom_Lock()
 	LogTrace("LockCom_Lock")
 	LockReport_LockStatus(LS_LOCKED,"Locked","aa",false)
 	print(IsLocked())
-    UpdateProperty("Lock Status", tostring(IsLocked()))
+	if IsLocked() == true then
+    	UpdateProperty("Lock Status", "Locked")
+	elseif IsLocked() == false then
+    	UpdateProperty("Lock Status", "Unlocked")
+	end
 
 end
 
@@ -20,14 +24,22 @@ function LockCom_Unlock()
 	LogTrace("LockCom_Unlock")
 	LockReport_LockStatus(LS_UNLOCKED,"Locked","aa",false)
 	print(IsLocked())
-    UpdateProperty("Lock Status", tostring(IsLocked()))
+	if IsLocked() == true then
+    	UpdateProperty("Lock Status", "Locked")
+	elseif IsLocked() == false then
+    	UpdateProperty("Lock Status", "Unlocked")
+	end
 
 end
 
 
 function LockCom_VerifySettings()
 	LogTrace("LockCom_VerifySettings")
-    UpdateProperty("Lock Status", tostring(IsLocked()))
+	if IsLocked() == true then
+    	UpdateProperty("Lock Status", "Locked")
+	elseif IsLocked() == false then
+    	UpdateProperty("Lock Status", "Unlocked")
+	end
 
 end
 
@@ -98,14 +110,47 @@ function LockCom_SetVolume(TargetVolume)
 
 end
 
-
+userID = 0
 function LockCom_AddUser(UserName, PassCode, ActiveFlag, RestrictedScheduleFlag, ScheduleType,
                           StartDateYear, StartDateMonth, StartDateDay, EndDateYear, EndDateMonth, EndDateDay,
 						  StartTime, EndTime,
 						  OnSunday, OnMonday, OnTuesday, OnWednesday, OnThursday, OnFriday, OnSaturday
 						 )
 	LogTrace("LockCom_AddUser: %s", tostring(UserName))
+	userID = userID + 1
+	maxUsers = GetMaxUsers()
+	
+	LockReport_AddUser(userID)
 
+	LockReport_UserName(userID, UserName)
+	LockReport_UserPassCode(userID, PassCode)
+
+	if RestrictedScheduleFlag == true then 
+		LockReport_UserActiveFlag(userID,ActiveFlag)
+		LockReport_UserRestrictedScheduleFlag(userID, RestrictedScheduleFlag)
+		LockReport_UserScheduleType(userID, ScheduleType)
+		--data_range
+		if ScheduleType == "date_range" then
+			--print ("Start yy/mm/dd ".. tostring(StartDateYear).."/"..tostring(StartDateMonth).."/"..tostring(StartDateDay))
+			--print ("Start yy/mm/dd ".. tostring(EndDateYear).."/"..tostring(EndDateMonth).."/"..tostring(EndDateDay))
+			LockReport_UserDateRange(userID, StartDateYear, StartDateMonth, StartDateDay, EndDateYear, EndDateMonth, EndDateDay)
+		elseif ScheduleType == "daily" then
+			--print ("Schedule Type daily")
+			LockReport_UserScheduleDays(userID, OnSunday, OnMonday, OnTuesday, OnWednesday, OnThursday, OnFriday, OnSaturday)
+		end
+		-- daily, verovatno
+		LockReport_UserRestrictedTime(userID, StartTime, EndTime)
+	end
+
+	IsUserValid(userID)
+	
+	NOTIFY.USER_ADDED(userID,UserName, PassCode, 
+	ActiveFlag, true,
+	StartDateDay, StartDateMonth, StartDateYear,
+	EndDateDay, EndDateMonth, EndDateYear,
+	StartTime, EndTime,
+	ScheduleType, RestrictedScheduleFlag,
+	5001)
 end
 
 
@@ -133,12 +178,21 @@ function LockCom_EditUser(UserID, UserName, PassCode, ActiveFlag, RestrictedSche
 						  OnSunday, OnMonday, OnTuesday, OnWednesday, OnThursday, OnFriday, OnSaturday
 						 )
 	LogTrace("LockCom_EditUser: %d", UserID)
+	LockReport_UpdateUserInformation(UserID, UserName, PassCode,
+											ActiveFlag, RestrictedScheduleFlag, ScheduleType,
+											StartTime, EndTime,
+											StartDateYear, StartDateMonth, StartDateDay,
+											EndDateYear, EndDateMonth, EndDateDay,
+											OnSunday, OnMonday, OnTuesday, OnWednesday,
+											OnThursday, OnFriday, OnSaturday
+										 )
 
 end
 
 
 function LockCom_DeleteUser(UserID)
 	LogTrace("LockCom_DeleteUser: %d", UserID)
+	LockReport_DeleteUser(UserID)
 
 end
 

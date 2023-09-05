@@ -35,6 +35,8 @@ function LockDevice:InitialSetup()
 	self._ActionDescription = ""
 	self._BatteryStatus = LBS_NORMAL
 	self._GatheringInfo = false
+
+	-- @@@@@
 	
 	if(PersistData.LockPersist == nil) then
 		PersistLockData = {}

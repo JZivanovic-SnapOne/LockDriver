@@ -119,7 +119,7 @@ end
 function NOTIFY.USERS(UsersXMLDataStr, BindingID)
 	LogTrace("NOTIFY.USERS")
 --	LogDev(UsersXMLDataStr)
-	
+	LogTrace(UsersXMLDataStr)
 	SendNotify("USERS", UsersXMLDataStr, BindingID)
 end
 

@@ -38,3 +38,18 @@ end
 function LUA_ACTION.Key_Unlock(tParams)
     LockCom_Unlock()
 end
+
+function LUA_ACTION.Print_User(tParams)
+	--PRX_CMD.REQUEST_USERS(5001, tParams)
+	
+	for k, v in pairs(AllUsersInfo) do
+		--print(k, v)
+		if k > userID then 
+			break
+		end
+		for k1, v1 in pairs(v) do
+			print(k1, v1)
+		end
+		print("---------------------------")
+	end
+end
