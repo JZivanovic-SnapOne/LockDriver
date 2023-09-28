@@ -28,8 +28,7 @@ function C4ProxyBase:construct(BindingID, ChildRef, InstanceName)
 	C4ProxyBase.AllProxiesList[self._BindingID] = self._ChildRef
 	C4ProxyBase.AllProxiesList[self._InstanceName] = self._ChildRef
 
-	--self._ProxyDeviceID, _ = next (C4:GetBoundConsumerDevices (C4:GetDeviceID(), self:GetBindingID()))
-	self._ProxyDeviceID, _ = next (C4:GetBoundConsumerDevices (94, self:GetBindingID()))
+	self._ProxyDeviceID, _ = next (C4:GetBoundConsumerDevices (C4:GetDeviceID(), self:GetBindingID()))
 	
 end
 

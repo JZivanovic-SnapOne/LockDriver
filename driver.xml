@@ -107,6 +107,10 @@
 				<name>Print User</name>
 				<command>Print_User</command>
 			</action>
+			<action>
+				<name>Fault State</name>
+				<command>Fault_state</command>
+			</action>
 		</actions>
     <commands>
     </commands>
@@ -142,6 +146,99 @@
         <type>STRING</type>
         <readonly>true</readonly>
         <default></default>
+      </property>
+      <property>
+        <name>Battery Level</name>
+        <type>LIST</type>
+        <readonly>false</readonly>
+        <default></default>
+        <items>
+          <item>Normal</item>
+          <item>Warning</item>
+          <item>Critical</item>
+        </items>
+      </property>
+      <property>
+        <name>Action Description</name>
+        <type>STRING</type>
+        <default></default>
+      </property>
+
+      <property>
+        <name>Capabilities</name>
+        <type>LABEL</type>
+        <default>Capabilities</default>
+      </property>
+      
+      <property>
+        <name>Has admin code</name>
+        <type>LIST</type>
+        <readonly>false</readonly>
+        <default></default>
+        <items>
+          <item>true</item>
+          <item>false</item>
+        </items>
+      </property>
+      <property>
+        <name>Is management only</name>
+        <type>LIST</type>
+        <readonly>false</readonly>
+        <default></default>
+        <items>
+          <item>true</item>
+          <item>false</item>
+        </items>
+      </property>
+      <property>
+        <name>Has schedule lockout</name>
+        <type>LIST</type>
+        <readonly>false</readonly>
+        <default></default>
+        <items>
+          <item>true</item>
+          <item>false</item>
+        </items>
+      </property>
+      <property>
+        <name>Has log item count</name>
+        <type>LIST</type>
+        <readonly>false</readonly>
+        <default></default>
+        <items>
+          <item>true</item>
+          <item>false</item>
+        </items>
+      </property>
+      <property>
+        <name>Has lock modes</name>
+        <type>LIST</type>
+        <readonly>false</readonly>
+        <default></default>
+        <items>
+          <item>true</item>
+          <item>false</item>
+        </items>
+      </property>
+      <property>
+        <name>Has log failed attempts</name>
+        <type>LIST</type>
+        <readonly>false</readonly>
+        <default></default>
+        <items>
+          <item>true</item>
+          <item>false</item>
+        </items>
+      </property>
+      <property>
+        <name>Has wrong code attempts</name>
+        <type>LIST</type>
+        <readonly>false</readonly>
+        <default></default>
+        <items>
+          <item>true</item>
+          <item>false</item>
+        </items>
       </property>
 
     </properties>
